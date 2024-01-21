@@ -11,18 +11,9 @@ RubyVoiceAI is a simple voice-controlled assistant written in Python. It can per
 - Roll a dice.
 - Receive a random compliment.
 
-## To Do
-
-Note: `These are subject to change`
-
-- Add RubyRob03's actual voice.
-- More commands.
-- Custom Voice TTS
-- Mobile Support
-
 ## Usage
 
-1. Run the Python script `RubyAI.py`.
+1. Run the Python script `main.py`.
 2. Say "Ruby" to start giving voice commands.
 3. You can ask questions like:
    - "What time is it?"
@@ -41,6 +32,15 @@ Note: `These are subject to change`
 - `pyttsx3`
 - `requests`
 
+## To Do
+
+Note: These are subject to change.
+
+- [ ] Add RubyRob03's actual voice.
+- [ ] More commands.
+- [ ] Custom Voice TTS.
+- [ ] Mobile Support.
+
 ## Author
 
-iMerciless
+[Your Name]

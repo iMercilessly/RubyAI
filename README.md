@@ -13,7 +13,7 @@ RubyVoiceAI is a simple voice-controlled assistant written in Python. It can per
 
 ## Usage
 
-1. Run the Python script `main.py`.
+1. Run the Python script `RubyAI.py`.
 2. Say "Ruby" to start giving voice commands.
 3. You can ask questions like:
    - "What time is it?"

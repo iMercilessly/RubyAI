@@ -4,9 +4,11 @@ from random import choice
 import datetime
 import requests
 import platform
+import subprocess
 
 class RubyVoiceAI:
     def __init__(self):
+        self.check_dependencies()
         self.recognizer = sr.Recognizer()
         self.microphone = sr.Microphone()
         self.engine = pyttsx3.init()
@@ -20,19 +22,46 @@ class RubyVoiceAI:
             "what is your purpose": self.list_commands
         }
 
+    def check_dependencies(self):
+        required_dependencies = ["speech_recognition", "pyttsx3", "requests"]
+
+        for dependency in required_dependencies:
+            try:
+                # Check if the dependency is already installed
+                __import__(dependency)
+            except ImportError:
+                print(f"Installing {dependency}...")
+                self.install_dependency(dependency)
+    
+    def install_dependency(self, dependency):
+        try:
+            subprocess.check_call(["pip", "install", dependency])
+            print(f"{dependency} installed successfully.")
+        except subprocess.CalledProcessError:
+            print(f"Failed to install {dependency}. Please install it manually.")
+
     def listen_for_command(self):
         with self.microphone as source:
-            print("Listening for 'Ruby'...")
+            print("Listening...")
             audio = self.recognizer.listen(source, timeout=None)  # Wait indefinitely
 
         try:
             command = self.recognizer.recognize_google(audio).lower()
             print("Heard:", command)
-            if "ruby" in command:
+
+            if "goodbye" in command:
+                print("Goodbye!")
+                self.speak("Goodbye!")
+                exit()  # Terminate the program
+
+            elif "ruby" in command:
+                # If the command contains "ruby", remove it before executing
                 command = command.replace("ruby", "").strip()
                 self.execute_command(command)
+
             else:
-                print("Keyword 'Ruby' not detected. Please say 'Ruby' to start giving commands.")
+                print("Command not recognized. Please try again.")
+
         except sr.UnknownValueError:
             print("Sorry, could not understand the audio.")
         except sr.RequestError as e:
